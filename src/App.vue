@@ -74,7 +74,7 @@
             :key="t.name"
             @click="selected = t"
             :class="{
-              'border-4': selected === t,
+              'border-4': selected === t
             }"
             class="bg-white overflow-hidden shadow rounded-lg border-purple-800 border-solid cursor-pointer"
           >
@@ -163,7 +163,7 @@ export default {
       ticker: "Default",
       tickers: [],
       selected: null,
-      graph: [],
+      graph: []
     };
   },
 
@@ -171,7 +171,7 @@ export default {
     add() {
       const currentTicker = {
         name: this.ticker,
-        price: "-",
+        price: "-"
       };
 
       this.tickers.push(currentTicker);
@@ -184,10 +184,11 @@ export default {
         const price =
           data.USD < 1 ? data.USD.toPrecision(2) : data.USD.toFixed(2);
 
-        if (this.tickers.find((t) => t.name === currentTicker.name))
-          this.tickers.find((t) => t.name === currentTicker.name).price = price;
+        if (this.tickers.find(t => t.name === currentTicker.name))
+          this.tickers.find(t => t.name === currentTicker.name).price = price;
 
-        if (this.selected.name === currentTicker.name) this.graph.push(data.USD);
+        if (this.selected.name === currentTicker.name)
+          this.graph.push(data.USD);
       }, 5000);
 
       this.ticker = "";
@@ -195,7 +196,7 @@ export default {
 
     handleDelete(tickerToDelete) {
       this.selected = null;
-      this.tickers = this.tickers.filter((item) => item !== tickerToDelete);
+      this.tickers = this.tickers.filter(item => item !== tickerToDelete);
     },
 
     normalizeGraph() {
@@ -205,9 +206,7 @@ export default {
       return this.graph.map(
         price => 5 + ((price - minValue) * 95) / (maxValue - minValue)
       );
-    },
-  },
+    }
+  }
 };
 </script>
-
-<style src="./app.css"></style>
